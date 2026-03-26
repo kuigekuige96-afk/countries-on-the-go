@@ -1,0 +1,11 @@
+.card {
+    border: 2px solid skyblue;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    color: white;
+}
+
+.active-visited {
+    background: linear-gradient(150deg, #272142, #244B60);
+}

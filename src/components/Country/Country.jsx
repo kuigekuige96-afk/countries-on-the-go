@@ -14,7 +14,7 @@ export default function Country({ country, handleVisitedFlag, handleVisitedCount
             <p>Capital: {country?.capital?.capital?.[0]}</p>
             <p>Area: {country?.area?.area} km²</p>
             <p>Population: {country?.population?.population}</p>
-            <p>Languages: {Object.values(country?.languages?.languages).join(', ')}</p>
+            <p>Languages: {Object.values(country?.languages?.languages ?? {}).join(', ')}</p>
             <button style={{
                 'color' : 'black',
                 'padding' : '10px',
@@ -22,8 +22,11 @@ export default function Country({ country, handleVisitedFlag, handleVisitedCount
                 'borderRadius' : '5px',
                 'cursor' : 'pointer'
             }} onClick={() => {
-                setActive(!active);
-                handleVisitedCountry(country?.name?.common);
+                const nextActive = !active;
+                setActive(nextActive);
+
+                // Only add to visited when toggling ON
+                if(nextActive) handleVisitedCountry(country?.name?.common);
             }}>
                 {active ? 'Active' : 'Not Active'}
             </button>
